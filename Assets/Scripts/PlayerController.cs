@@ -157,6 +157,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDucking) return;
 
+        // Change le layer au début du duck
+        if (duckTimer == 0f)
+            gameObject.layer = LayerMask.NameToLayer("PlayerDucking");
+
         duckTimer += Time.deltaTime;
         float ratio = duckTimer / duckDuration;
         float scale = ratio < 0.5f
@@ -164,12 +168,17 @@ public class PlayerController : MonoBehaviour
             : Mathf.Lerp(duckScale, 1f, (ratio - 0.5f) * 2f);
 
         transform.localScale = baseScale * scale;
+        sr.sortingLayerName = "Props";
 
         if (duckTimer >= duckDuration)
         {
             isDucking = false;
             duckTimer = 0f;
             transform.localScale = baseScale;
+            sr.sortingLayerName = "Characters";
+            
+            // Remet le layer normal
+            gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
         }
     }
 
