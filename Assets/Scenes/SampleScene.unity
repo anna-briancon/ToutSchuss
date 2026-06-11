@@ -3933,7 +3933,9 @@ MonoBehaviour:
   isSlowed: 0
   skiTrails: {fileID: 1392338726}
   puffPrefab: {fileID: 4656954275549147121, guid: 78df48472f47b431c83772b196e296de, type: 3}
+  duckPuffPrefab: {fileID: 5161834365109946377, guid: 6365775f03b8c4af49a25c6f263bdf5e, type: 3}
   landingPuffDuration: 0.75
+  duckPuffDuration: 1.1
   hitSounds:
   - {fileID: 8300000, guid: e64efbc9a5b4145b79241e2e489989a9, type: 3}
   - {fileID: 8300000, guid: 397155923320a4dbcbc922d918d7349e, type: 3}

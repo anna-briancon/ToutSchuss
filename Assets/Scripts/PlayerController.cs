@@ -38,8 +38,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("Effets")]
     public GameObject puffPrefab;
+    public GameObject duckPuffPrefab;
     public float landingPuffDuration = 0.75f;
+    public float duckPuffDuration = 1.1f;
     private float trailHideTimer;
+    private GameObject activeLandingPuff;
+    private GameObject activeDuckPuff;
     
     [Header("Audio")]
     public AudioClip[] hitSounds;
@@ -145,7 +149,8 @@ public class PlayerController : MonoBehaviour
             transform.localScale = baseScale;
             gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
 
-            SpawnLandingPuff();
+            if (!isDead)
+                SpawnLandingPuff();
         }
     }
 
@@ -165,13 +170,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDucking) return;
 
-        // Change le layer au début du duck
         if (duckTimer == 0f)
         {
             gameObject.layer = LayerMask.NameToLayer("PlayerDucking");
-            if (skiTrails != null)
-                foreach (SpriteRenderer trailSr in skiTrails.GetComponentsInChildren<SpriteRenderer>())
-                    trailSr.sortingLayerName = "Background";
+            if (!isDead)
+                SpawnDuckPuff();
         }
 
         duckTimer += Time.deltaTime;
@@ -190,12 +193,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = baseScale;
             sr.sortingLayerName = "Characters";
              
-            // Remet le layer normal
             gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
-            
-            if (skiTrails != null)
-                foreach (SpriteRenderer trailSr in skiTrails.GetComponentsInChildren<SpriteRenderer>())
-                    trailSr.sortingLayerName = "Characters";
         }
     }
 
@@ -236,8 +234,21 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         isDead = true;
+        isJumping = false;
+        isDucking = false;
+        jumpTimer = 0f;
+        trailHideTimer = 0f;
         isSlowed = false;
         slowTimer = 0f;
+        transform.localScale = baseScale;
+        gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
+
+        Vector3 pos = transform.position;
+        pos.y = baseY;
+        transform.position = pos;
+
+        DestroyActivePuffs();
+
         sr.sprite = spriteIdle;
         Debug.Log("Mort !");
     }
@@ -276,11 +287,41 @@ public class PlayerController : MonoBehaviour
     
     void SpawnLandingPuff()
     {
-        if (puffPrefab == null) return;
+        if (puffPrefab == null || isDead) return;
 
-        GameObject puff = Instantiate(puffPrefab, transform);
-        Destroy(puff, landingPuffDuration);
-        trailHideTimer = landingPuffDuration;
+        if (activeLandingPuff != null)
+            Destroy(activeLandingPuff);
+
+        activeLandingPuff = Instantiate(puffPrefab, transform);
+        Destroy(activeLandingPuff, landingPuffDuration);
+        trailHideTimer = Mathf.Max(trailHideTimer, landingPuffDuration);
+    }
+
+    void SpawnDuckPuff()
+    {
+        if (duckPuffPrefab == null || isDead) return;
+
+        if (activeDuckPuff != null)
+            Destroy(activeDuckPuff);
+
+        activeDuckPuff = Instantiate(duckPuffPrefab, transform);
+        Destroy(activeDuckPuff, duckPuffDuration);
+        trailHideTimer = Mathf.Max(trailHideTimer, duckPuffDuration);
+    }
+
+    void DestroyActivePuffs()
+    {
+        if (activeLandingPuff != null)
+        {
+            Destroy(activeLandingPuff);
+            activeLandingPuff = null;
+        }
+
+        if (activeDuckPuff != null)
+        {
+            Destroy(activeDuckPuff);
+            activeDuckPuff = null;
+        }
     }
 
     void UpdateTrails()
@@ -290,7 +331,7 @@ public class PlayerController : MonoBehaviour
         if (trailHideTimer > 0f)
             trailHideTimer -= Time.deltaTime;
 
-        skiTrails.SetActive(!isJumping && !isDead && trailHideTimer <= 0f);
+        skiTrails.SetActive(!isJumping && !isDead && !isDucking && trailHideTimer <= 0f);
     }
 
     // ── GETTERS ─────────────────────────────────────────────────
