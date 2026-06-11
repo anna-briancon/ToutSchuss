@@ -1,0 +1,696 @@
+fileFormatVersion: 2
+guid: abea037d4539643f181e30809a514367
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5849252003539593366
+    second: fx_snow_puff_0
+  - first:
+      213: 645525684938824130
+    second: fx_snow_puff_1
+  - first:
+      213: 4534155321109240814
+    second: fx_snow_puff_2
+  - first:
+      213: 4174254109799203555
+    second: fx_snow_puff_3
+  - first:
+      213: 5943432298282367988
+    second: fx_snow_puff_4
+  - first:
+      213: 3334362768074292014
+    second: fx_snow_puff_5
+  - first:
+      213: -4649401164934047687
+    second: fx_snow_puff_6
+  - first:
+      213: 6831115544703503209
+    second: fx_snow_puff_7
+  - first:
+      213: -9218625437419010344
+    second: fx_snow_puff_8
+  - first:
+      213: 1760999430779449127
+    second: fx_snow_puff_9
+  - first:
+      213: 337693938728761134
+    second: fx_snow_puff_10
+  - first:
+      213: -6748646372672608879
+    second: fx_snow_puff_11
+  - first:
+      213: 5305909126865476248
+    second: fx_snow_puff_12
+  - first:
+      213: 1077058946536063359
+    second: fx_snow_puff_13
+  - first:
+      213: 8401945124736102477
+    second: fx_snow_puff_14
+  - first:
+      213: 4227184602709094760
+    second: fx_snow_puff_15
+  - first:
+      213: -6773150361999395747
+    second: fx_snow_puff_16
+  - first:
+      213: 8409768024968768022
+    second: fx_snow_puff_17
+  - first:
+      213: -4042065381990708104
+    second: fx_snow_puff_18
+  - first:
+      213: -5104128989786320320
+    second: fx_snow_puff_19
+  - first:
+      213: -625220354646832120
+    second: fx_snow_puff_20
+  - first:
+      213: -5536409362707786097
+    second: fx_snow_puff_21
+  - first:
+      213: 113503432546673610
+    second: fx_snow_puff_22
+  - first:
+      213: 5495900456740332092
+    second: fx_snow_puff_23
+  - first:
+      213: -3818874711967257783
+    second: fx_snow_puff_24
+  - first:
+      213: 4682874933788036898
+    second: fx_snow_puff_25
+  - first:
+      213: 1005161678842240620
+    second: fx_snow_puff_26
+  - first:
+      213: 2825729993049307247
+    second: fx_snow_puff_27
+  - first:
+      213: -7708929541044446167
+    second: fx_snow_puff_28
+  - first:
+      213: -6736064000861145833
+    second: fx_snow_puff_29
+  - first:
+      213: -4860742757497489792
+    second: fx_snow_puff_30
+  - first:
+      213: -6443740426980268983
+    second: fx_snow_puff_31
+  - first:
+      213: -3523517134295924665
+    second: fx_snow_puff_32
+  - first:
+      213: 555584132842536502
+    second: fx_snow_puff_33
+  - first:
+      213: -4681640122403748808
+    second: fx_snow_puff_34
+  - first:
+      213: -8814740699547160798
+    second: fx_snow_puff_35
+  - first:
+      213: 6655506422368304784
+    second: fx_snow_puff_36
+  - first:
+      213: 4712386730793144958
+    second: fx_snow_puff_37
+  - first:
+      213: 1921709524808097158
+    second: fx_snow_puff_38
+  - first:
+      213: 1152423703531985836
+    second: fx_snow_puff_39
+  - first:
+      213: 272758776910400425
+    second: fx_snow_puff_40
+  - first:
+      213: 6370879470106466618
+    second: fx_snow_puff_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fx_snow_puff_0
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1643
+        width: 323
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69828b0e4b7bc2150800000000000000
+      internalID: 5849252003539593366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_1
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 1739
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c95b28b03e55f800800000000000000
+      internalID: 645525684938824130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_2
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 1713
+        width: 199
+        height: 186
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eebd927dd3e8cee30800000000000000
+      internalID: 4534155321109240814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_5
+      rect:
+        serializedVersion: 2
+        x: 1684
+        y: 1695
+        width: 221
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b3b577549064e20800000000000000
+      internalID: 3334362768074292014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_6
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 1802
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93891d926420a7fb0800000000000000
+      internalID: -4649401164934047687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_12
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 1227
+        width: 158
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ad15d2d3062a940800000000000000
+      internalID: 5305909126865476248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_13
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 1189
+        width: 273
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f714076c76b72fe00800000000000000
+      internalID: 1077058946536063359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_14
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1175
+        width: 326
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4078365394b99470800000000000000
+      internalID: 8401945124736102477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_15
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 1162
+        width: 340
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 861f974eff9f9aa30800000000000000
+      internalID: 4227184602709094760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_19
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 664
+        width: 313
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04253040abd7a29b0800000000000000
+      internalID: -5104128989786320320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_20
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 664
+        width: 286
+        height: 275
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80c8ee66665c257f0800000000000000
+      internalID: -625220354646832120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_22
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 664
+        width: 288
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac36bb145ce339100800000000000000
+      internalID: 113503432546673610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_24
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 667
+        width: 304
+        height: 272
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b2877cea1a00bc0800000000000000
+      internalID: -3818874711967257783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 425
+        height: 439
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e72903da3c2c56140800000000000000
+      internalID: 4712386730793144958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_38
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 113
+        width: 351
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68ddba391a84baa10800000000000000
+      internalID: 1921709524808097158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_39
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 257
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab93c7a04b3eff00800000000000000
+      internalID: 1152423703531985836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_40
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 113
+        width: 351
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab4d1799a809c300800000000000000
+      internalID: 272758776910400425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx_snow_puff_41
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 0
+        width: 438
+        height: 427
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a39568aaf19e96850800000000000000
+      internalID: 6370879470106466618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: aced3219a576b448d85de5aa63e1cd6d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":273.0,"y":273.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      fx_snow_puff_0: 5849252003539593366
+      fx_snow_puff_1: 645525684938824130
+      fx_snow_puff_10: 337693938728761134
+      fx_snow_puff_11: -6748646372672608879
+      fx_snow_puff_12: 5305909126865476248
+      fx_snow_puff_13: 1077058946536063359
+      fx_snow_puff_14: 8401945124736102477
+      fx_snow_puff_15: 4227184602709094760
+      fx_snow_puff_16: -6773150361999395747
+      fx_snow_puff_17: 8409768024968768022
+      fx_snow_puff_18: -4042065381990708104
+      fx_snow_puff_19: -5104128989786320320
+      fx_snow_puff_2: 4534155321109240814
+      fx_snow_puff_20: -625220354646832120
+      fx_snow_puff_21: -5536409362707786097
+      fx_snow_puff_22: 113503432546673610
+      fx_snow_puff_23: 5495900456740332092
+      fx_snow_puff_24: -3818874711967257783
+      fx_snow_puff_25: 4682874933788036898
+      fx_snow_puff_26: 1005161678842240620
+      fx_snow_puff_27: 2825729993049307247
+      fx_snow_puff_28: -7708929541044446167
+      fx_snow_puff_29: -6736064000861145833
+      fx_snow_puff_3: 4174254109799203555
+      fx_snow_puff_30: -4860742757497489792
+      fx_snow_puff_31: -6443740426980268983
+      fx_snow_puff_32: -3523517134295924665
+      fx_snow_puff_33: 555584132842536502
+      fx_snow_puff_34: -4681640122403748808
+      fx_snow_puff_35: -8814740699547160798
+      fx_snow_puff_36: 6655506422368304784
+      fx_snow_puff_37: 4712386730793144958
+      fx_snow_puff_38: 1921709524808097158
+      fx_snow_puff_39: 1152423703531985836
+      fx_snow_puff_4: 5943432298282367988
+      fx_snow_puff_40: 272758776910400425
+      fx_snow_puff_41: 6370879470106466618
+      fx_snow_puff_5: 3334362768074292014
+      fx_snow_puff_6: -4649401164934047687
+      fx_snow_puff_7: 6831115544703503209
+      fx_snow_puff_8: -9218625437419010344
+      fx_snow_puff_9: 1760999430779449127
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

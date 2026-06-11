@@ -35,9 +35,15 @@ public class PlayerController : MonoBehaviour
     
     [Header("Ski Trails")]
     public GameObject skiTrails;
+
+    [Header("Effets")]
+    public GameObject puffPrefab;
+    public float landingPuffDuration = 0.75f;
+    private float trailHideTimer;
     
     [Header("Audio")]
     public AudioClip[] hitSounds;
+    
     private AudioSource audioSource;
 
     private SpriteRenderer sr;
@@ -138,6 +144,8 @@ public class PlayerController : MonoBehaviour
             transform.position = pos;
             transform.localScale = baseScale;
             gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
+
+            SpawnLandingPuff();
         }
     }
 
@@ -266,10 +274,23 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    void SpawnLandingPuff()
+    {
+        if (puffPrefab == null) return;
+
+        GameObject puff = Instantiate(puffPrefab, transform);
+        Destroy(puff, landingPuffDuration);
+        trailHideTimer = landingPuffDuration;
+    }
+
     void UpdateTrails()
     {
         if (skiTrails == null) return;
-        skiTrails.SetActive(!isJumping && !isDead);
+
+        if (trailHideTimer > 0f)
+            trailHideTimer -= Time.deltaTime;
+
+        skiTrails.SetActive(!isJumping && !isDead && trailHideTimer <= 0f);
     }
 
     // ── GETTERS ─────────────────────────────────────────────────
