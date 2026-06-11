@@ -159,7 +159,12 @@ public class PlayerController : MonoBehaviour
 
         // Change le layer au début du duck
         if (duckTimer == 0f)
+        {
             gameObject.layer = LayerMask.NameToLayer("PlayerDucking");
+            if (skiTrails != null)
+                foreach (SpriteRenderer trailSr in skiTrails.GetComponentsInChildren<SpriteRenderer>())
+                    trailSr.sortingLayerName = "Background";
+        }
 
         duckTimer += Time.deltaTime;
         float ratio = duckTimer / duckDuration;
@@ -176,9 +181,13 @@ public class PlayerController : MonoBehaviour
             duckTimer = 0f;
             transform.localScale = baseScale;
             sr.sortingLayerName = "Characters";
-            
+             
             // Remet le layer normal
             gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
+            
+            if (skiTrails != null)
+                foreach (SpriteRenderer trailSr in skiTrails.GetComponentsInChildren<SpriteRenderer>())
+                    trailSr.sortingLayerName = "Characters";
         }
     }
 
