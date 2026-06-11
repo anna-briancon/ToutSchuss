@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 225848679732889317}
   - component: {fileID: 6649707545052615706}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: tile_0032_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4830837959942758315}
   - component: {fileID: 4305582522162420140}
   - component: {fileID: -7878556841507413270}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Obstacle_Side_GateRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

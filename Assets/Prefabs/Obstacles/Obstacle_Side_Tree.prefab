@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6519378440201388891}
   - component: {fileID: 360656308432809509}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: tile_0030_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 9038413665599891530}
   - component: {fileID: -8467674219334840482}
   - component: {fileID: -5098146430012023298}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Obstacle_Side_Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}

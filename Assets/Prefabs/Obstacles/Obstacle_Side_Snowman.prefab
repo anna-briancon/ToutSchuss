@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5472406640020658040}
   - component: {fileID: -1996314134730527079}
   - component: {fileID: 8101964721371251381}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Obstacle_Side_Snowman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6224285309379086177}
   - component: {fileID: 5982578697455544731}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: tile_0069_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

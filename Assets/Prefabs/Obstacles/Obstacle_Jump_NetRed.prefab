@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3376106837048122085}
   - component: {fileID: 2816931852392916082}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: tile_0010_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3731156612979639146}
   - component: {fileID: 4721974242511381310}
   - component: {fileID: -5831392381810822687}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Obstacle_Jump_NetRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
