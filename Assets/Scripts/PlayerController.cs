@@ -21,10 +21,6 @@ public class PlayerController : MonoBehaviour
     private bool isDucking = false;
     private float duckTimer = 0f;
 
-    [Header("Sprites")]
-    public Sprite spriteIdle;
-    public Sprite spriteMoving;
-
     [Header("Hit System")]
     public float slowMultiplier = 0.4f;
     public float slowDuration = 3f;
@@ -76,7 +72,6 @@ public class PlayerController : MonoBehaviour
             MoveLane();
             UpdateJump();
             UpdateDuck();
-            UpdateSprite();
             UpdateSlow();
         }
         UpdateTrails();
@@ -215,12 +210,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ── SPRITE ──────────────────────────────────────────────────
-    void UpdateSprite()
-    {
-        sr.sprite = spriteMoving;
-    }
-
     // ── HIT SYSTEM ──────────────────────────────────────────────
     public void HitObstacle()
     {
@@ -266,8 +255,6 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
 
         DestroyActivePuffs();
-
-        sr.sprite = spriteIdle;
         Debug.Log("Mort !");
     }
 

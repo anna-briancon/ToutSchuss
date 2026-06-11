@@ -3826,7 +3826,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1728379928979949314, guid: 7f3c249e3231247bda06cb98dff40c06, type: 3}
+  m_Sprite: {fileID: 7388399842426930641, guid: f07cc76312da141458d437c387248603, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3927,8 +3927,6 @@ MonoBehaviour:
   jumpDuration: 0.8
   duckScale: 0.6
   duckDuration: 1
-  spriteIdle: {fileID: -1728379928979949314, guid: 7f3c249e3231247bda06cb98dff40c06, type: 3}
-  spriteMoving: {fileID: 7570373138001982034, guid: c168dd1bf6cfc4136b0b69eca695ab4f, type: 3}
   slowMultiplier: 0.4
   slowDuration: 3
   isSlowed: 0
