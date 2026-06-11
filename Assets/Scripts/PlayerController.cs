@@ -94,12 +94,20 @@ public class PlayerController : MonoBehaviour
         {
             currentLane--;
             targetX = (currentLane - 1) * laneWidth;
+            TiltTrails(-15f); // Incline à gauche quand on va à gauche
         }
         if (input.x > 0 && currentLane < 2)
         {
             currentLane++;
             targetX = (currentLane - 1) * laneWidth;
+            TiltTrails(15f); // Incline à droite quand on va à droite
         }
+    }
+
+    void TiltTrails(float angle)
+    {
+        if (skiTrails == null) return;
+        skiTrails.transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
     void MoveLane()
@@ -107,6 +115,16 @@ public class PlayerController : MonoBehaviour
         Vector3 pos = transform.position;
         pos.x = Mathf.Lerp(pos.x, targetX, Time.deltaTime * laneSwitchSpeed);
         transform.position = pos;
+
+        // Remet la trainée droite quand on est arrivé
+        if (Mathf.Abs(pos.x - targetX) < 0.05f && skiTrails != null)
+        {
+            skiTrails.transform.localRotation = Quaternion.Lerp(
+                skiTrails.transform.localRotation,
+                Quaternion.identity,
+                Time.deltaTime * 10f
+            );
+        }
     }
 
     // ── SAUT ────────────────────────────────────────────────────
