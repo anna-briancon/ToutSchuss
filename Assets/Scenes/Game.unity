@@ -1657,6 +1657,7 @@ MonoBehaviour:
   spawnInterval: 2
   spawnY: -10
   laneWidth: 1
+  worldScroller: {fileID: 1173795800}
 --- !u!4 &810386781
 Transform:
   m_ObjectHideFlags: 0
@@ -2452,30 +2453,13 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116948653}
   m_CullTransparentMesh: 1
---- !u!1 &1130329515
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1130329517}
-  - component: {fileID: 1130329516}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &1130329516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130329515}
+  m_GameObject: {fileID: 1999999900}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af8978ecffa4b4d06b2e26d3ce9cac79, type: 3}
@@ -2486,27 +2470,10 @@ MonoBehaviour:
   yetiDangerBar: {fileID: 1656665650}
   dangerRiseSpeed: 6
   dangerFallSpeed: 1.2
-  gameOverPanel: {fileID: 1581830904}
   finalScoreText: {fileID: 359621501}
   bestScoreGameOverText: {fileID: 1398238008}
   restartButton: {fileID: 918107442}
-  startPanel: {fileID: 703497347}
   startButton: {fileID: 1635600362}
---- !u!4 &1130329517
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130329515}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.08573, y: 1.9944, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1140305784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7155587653399638997, guid: 93ec865e074014c2c9bf2672f4218798, type: 3}
@@ -2569,7 +2536,8 @@ MonoBehaviour:
   rowCount: 18
   rowHeight: 1
   propSpawnChance: 0.4
-  isRunning: 0
+  staticWorldRoot: {fileID: 1442843823}
+  staticPropsRoot: {fileID: 1809935545}
 --- !u!4 &1192284387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5196544949431045147, guid: 9ec1fb983aec74626a1d0015c6e8a54e, type: 3}
@@ -3925,8 +3893,15 @@ MonoBehaviour:
   laneSwitchSpeed: 10
   jumpHeight: 1
   jumpDuration: 0.8
+  jumpScaleBoost: 0.3
   duckScale: 0.6
   duckDuration: 1
+  duckSortingLayer: Props
+  jumpingLayer: 10
+  duckingLayer: 11
+  trailTiltAngle: 15
+  trailUprightSpeed: 10
+  deathSpinSpeed: 360
   slowMultiplier: 0.4
   slowDuration: 3
   isSlowed: 0
@@ -4657,32 +4632,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c9b9fd2fd4724884862dccf250f9f10, type: 3}
---- !u!1 &1783870591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1783870595}
-  - component: {fileID: 1783870594}
-  - component: {fileID: 1783870593}
-  - component: {fileID: 1783870592}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &1783870592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783870591}
+  m_GameObject: {fileID: 1999999900}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36c2f44c275ab4a689dbefea08343ca4, type: 3}
@@ -4699,7 +4655,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783870591}
+  m_GameObject: {fileID: 1999999900}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -4796,7 +4752,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783870591}
+  m_GameObject: {fileID: 1999999900}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -4887,21 +4843,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1783870595
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783870591}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62831, y: 0.22298, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1790563547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7155587653399638997, guid: 93ec865e074014c2c9bf2672f4218798, type: 3}
@@ -5043,6 +4984,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e1971cc1395ed43bf81c9985432e4820, type: 3}
   catchSound: {fileID: 8300000, guid: 592af9af459a849ec9cb400c6c81fcdc, type: 3}
   approachSoundInterval: 2
+  player: {fileID: 1692258954}
 --- !u!82 &1806448260
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5434,6 +5376,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec865e074014c2c9bf2672f4218798, type: 3}
+--- !u!1 &1999999900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999999901}
+  - component: {fileID: 1999999902}
+  - component: {fileID: 1130329516}
+  - component: {fileID: 1783870592}
+  - component: {fileID: 1783870593}
+  - component: {fileID: 1783870594}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999999901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999999900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999999902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999999900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e4f1a23b5d647e9a0c2d8e7f4b6a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 1692258954}
+  yeti: {fileID: 1806448259}
+  startPanel: {fileID: 703497347}
+  gameOverPanel: {fileID: 1581830904}
 --- !u!1 &2057704192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5796,15 +5790,14 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1999999901}
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1692258950}
-  - {fileID: 1173795799}
   - {fileID: 1442843823}
   - {fileID: 1809935545}
-  - {fileID: 810386781}
+  - {fileID: 1692258950}
   - {fileID: 1806448258}
+  - {fileID: 1173795799}
+  - {fileID: 810386781}
   - {fileID: 2111735764}
   - {fileID: 237257231}
-  - {fileID: 1130329517}
-  - {fileID: 1783870595}

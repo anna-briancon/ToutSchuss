@@ -18,21 +18,23 @@ public class YetiChaser : MonoBehaviour
     private float approachSoundTimer = 0f;
     public float approachSoundInterval = 2f; // Toutes les 2 secondes
 
-    private PlayerController player;
+    [Header("References")]
+    public PlayerController player;
     private Animator animator;
     private bool hasCaught = false;
 
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
+        if (player == null) return;
 
         transform.position = new Vector3(
             player.transform.position.x,
             player.transform.position.y + normalOffsetY,
             0
         );
-        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()

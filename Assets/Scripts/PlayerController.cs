@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Saut")]
     public float jumpHeight = 0.5f;
     public float jumpDuration = 0.3f;
+    public float jumpScaleBoost = 0.3f;
     private bool isJumping = false;
     private float jumpTimer = 0f;
 
@@ -20,6 +21,20 @@ public class PlayerController : MonoBehaviour
     public float duckDuration = 0.5f;
     private bool isDucking = false;
     private float duckTimer = 0f;
+
+    [Header("Rendu")]
+    public string duckSortingLayer = "Props";
+
+    [Header("Collision Layers")]
+    public int jumpingLayer;
+    public int duckingLayer;
+
+    [Header("Trainées")]
+    public float trailTiltAngle = 15f;
+    public float trailUprightSpeed = 10f;
+
+    [Header("Mort")]
+    public float deathSpinSpeed = 360f;
 
     [Header("Hit System")]
     public float slowMultiplier = 0.4f;
@@ -49,7 +64,10 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     private Vector3 baseScale;
     private float baseY;
-    
+    private int normalLayer;
+    private int normalSortingLayerId;
+    private int normalSortingOrder;
+
     private float deathTimer = 0f;
     private float deathDuration = 2f;
     private bool gamePaused = false;
@@ -61,14 +79,16 @@ public class PlayerController : MonoBehaviour
         baseY = transform.position.y;
         targetX = 0f;
         audioSource = GetComponent<AudioSource>();
+
+        normalLayer = gameObject.layer;
+        normalSortingLayerId = sr.sortingLayerID;
+        normalSortingOrder = sr.sortingOrder;
     }
 
     void Update()
     {
         if (!isDead)
         {
-            HandleJumpInput();
-            HandleDuckInput();
             MoveLane();
             UpdateJump();
             UpdateDuck();
@@ -89,13 +109,13 @@ public class PlayerController : MonoBehaviour
         {
             currentLane--;
             targetX = (currentLane - 1) * laneWidth;
-            TiltTrails(-15f); // Incline à gauche quand on va à gauche
+            TiltTrails(-trailTiltAngle);
         }
         if (input.x > 0 && currentLane < 2)
         {
             currentLane++;
             targetX = (currentLane - 1) * laneWidth;
-            TiltTrails(15f); // Incline à droite quand on va à droite
+            TiltTrails(trailTiltAngle);
         }
     }
 
@@ -117,30 +137,34 @@ public class PlayerController : MonoBehaviour
             skiTrails.transform.localRotation = Quaternion.Lerp(
                 skiTrails.transform.localRotation,
                 Quaternion.identity,
-                Time.deltaTime * 10f
+                Time.deltaTime * trailUprightSpeed
             );
         }
     }
 
-    // ── SAUT ────────────────────────────────────────────────────
-    void HandleJumpInput()
+    public void OnJump(InputValue value)
     {
-        if ((Keyboard.current.upArrowKey.wasPressedThisFrame ||
-             Keyboard.current.wKey.wasPressedThisFrame ||
-             Keyboard.current.spaceKey.wasPressedThisFrame)
-            && !isJumping && !isDucking)
-        {
-            isJumping = true;
-            jumpTimer = 0f;
-        }
+        if (isDead || !value.isPressed || isJumping || isDucking) return;
+
+        isJumping = true;
+        jumpTimer = 0f;
     }
 
+    public void OnCrouch(InputValue value)
+    {
+        if (isDead || !value.isPressed || isJumping || isDucking) return;
+
+        isDucking = true;
+        duckTimer = 0f;
+    }
+
+    // ── SAUT ────────────────────────────────────────────────────
     void UpdateJump()
     {
         if (!isJumping) return;
 
         if (jumpTimer == 0f)
-            gameObject.layer = LayerMask.NameToLayer("PlayerJumping");
+            gameObject.layer = jumpingLayer;
 
         jumpTimer += Time.deltaTime;
         float ratio = jumpTimer / jumpDuration;
@@ -150,7 +174,7 @@ public class PlayerController : MonoBehaviour
         pos.y = baseY + arc * jumpHeight;
         transform.position = pos;
 
-        float scaleBoost = 1f + arc * 0.3f;
+        float scaleBoost = 1f + arc * jumpScaleBoost;
         transform.localScale = baseScale * scaleBoost;
 
         if (jumpTimer >= jumpDuration)
@@ -160,7 +184,7 @@ public class PlayerController : MonoBehaviour
             pos.y = baseY;
             transform.position = pos;
             transform.localScale = baseScale;
-            gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
+            gameObject.layer = normalLayer;
 
             if (!isDead)
                 SpawnLandingPuff();
@@ -168,24 +192,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // ── BAISSE ──────────────────────────────────────────────────
-    void HandleDuckInput()
-    {
-        if ((Keyboard.current.downArrowKey.wasPressedThisFrame ||
-             Keyboard.current.sKey.wasPressedThisFrame)
-            && !isJumping && !isDucking)
-        {
-            isDucking = true;
-            duckTimer = 0f;
-        }
-    }
-
     void UpdateDuck()
     {
         if (!isDucking) return;
 
         if (duckTimer == 0f)
         {
-            gameObject.layer = LayerMask.NameToLayer("PlayerDucking");
+            gameObject.layer = duckingLayer;
+            ApplyDuckSorting();
             if (!isDead)
                 SpawnDuckPuff();
         }
@@ -197,17 +211,26 @@ public class PlayerController : MonoBehaviour
             : Mathf.Lerp(duckScale, 1f, (ratio - 0.5f) * 2f);
 
         transform.localScale = baseScale * scale;
-        sr.sortingLayerName = "Props";
 
         if (duckTimer >= duckDuration)
         {
             isDucking = false;
             duckTimer = 0f;
             transform.localScale = baseScale;
-            sr.sortingLayerName = "Characters";
-             
-            gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
+            RestoreNormalSorting();
+            gameObject.layer = normalLayer;
         }
+    }
+
+    void ApplyDuckSorting()
+    {
+        sr.sortingLayerName = duckSortingLayer;
+    }
+
+    void RestoreNormalSorting()
+    {
+        sr.sortingLayerID = normalSortingLayerId;
+        sr.sortingOrder = normalSortingOrder;
     }
 
     // ── HIT SYSTEM ──────────────────────────────────────────────
@@ -248,7 +271,8 @@ public class PlayerController : MonoBehaviour
         isSlowed = false;
         slowTimer = 0f;
         transform.localScale = baseScale;
-        gameObject.layer = LayerMask.NameToLayer("PlayerNormal");
+        gameObject.layer = normalLayer;
+        RestoreNormalSorting();
 
         Vector3 pos = transform.position;
         pos.y = baseY;
@@ -266,13 +290,14 @@ public class PlayerController : MonoBehaviour
     
         if (deathTimer < deathDuration)
         {
-            transform.Rotate(0, 0, -360 * Time.deltaTime);
+            transform.Rotate(0, 0, -deathSpinSpeed * Time.deltaTime);
         }
         else if (!gamePaused)
         {
             transform.rotation = Quaternion.identity;
             gamePaused = true;
-            Time.timeScale = 0f;
+            if (GameManager.Instance != null)
+                GameManager.Instance.SetState(GameState.GameOver);
         }
     }
 

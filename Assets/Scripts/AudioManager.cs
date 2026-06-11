@@ -16,19 +16,12 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            Destroy(this);
+            return;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void Start()
-    {
-        PlayMenuMusic();
+        Instance = this;
     }
 
     public void PlayMenuMusic()

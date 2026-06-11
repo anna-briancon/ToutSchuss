@@ -18,20 +18,17 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnY = -10f;
     public float laneWidth = 1f;
 
+    [Header("References")]
+    public WorldScroller worldScroller;
+
     private float timer = 0f;
-    private WorldScroller worldScroller;
 
     // Positions des couloirs
     // 0 = gauche (x:-1), 1 = centre (x:0), 2 = droite (x:+1)
 
-    void Start()
-    {
-        worldScroller = FindObjectOfType<WorldScroller>();
-    }
-
     void Update()
     {
-        if (!FindObjectOfType<WorldScroller>().isRunning) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying) return;
         
         timer += Time.deltaTime;
         if (timer >= spawnInterval)

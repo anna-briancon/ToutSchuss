@@ -15,6 +15,10 @@ public class WorldScroller : MonoBehaviour
     [Header("Props")]
     public float propSpawnChance = 0.4f;
 
+    [Header("References")]
+    public Transform staticWorldRoot;
+    public Transform staticPropsRoot;
+
     private List<GameObject> rows = new List<GameObject>();
     private List<GameObject> props = new List<GameObject>();
     private List<GameObject> obstacles = new List<GameObject>();
@@ -22,31 +26,21 @@ public class WorldScroller : MonoBehaviour
     private float topY;
     private float bottomY;
     
-    public bool isRunning = false;
-
     void Start()
     {
         topY = rowCount / 2f * rowHeight;
         bottomY = -topY;
 
-        // Récupère les rangées déjà présentes dans StaticWorld
-        GameObject staticWorld = GameObject.Find("StaticWorld");
-        if (staticWorld != null)
+        if (staticWorldRoot != null)
         {
-            foreach (Transform child in staticWorld.transform)
-            {
+            foreach (Transform child in staticWorldRoot)
                 rows.Add(child.gameObject);
-            }
         }
-        
-        // Récupère les props déjà placés
-        GameObject staticProps = GameObject.Find("StaticProps");
-        if (staticProps != null)
+
+        if (staticPropsRoot != null)
         {
-            foreach (Transform child in staticProps.transform)
-            {
+            foreach (Transform child in staticPropsRoot)
                 props.Add(child.gameObject);
-            }
         }
 
         // Si pas assez de rangées, complète avec des nouvelles
@@ -63,7 +57,7 @@ public class WorldScroller : MonoBehaviour
 
     void Update()
     {
-        if (!isRunning) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying) return;
         
         ScrollRows();
         ScrollProps();
