@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour
 
     private PlayerController player;
     private YetiChaser yeti;
+    private WorldScroller worldScroller;
+    private Animator playerAnimator;
     private float distance = 0f;
     private int bestScore = 0;
     private bool gameOver = false;
@@ -42,6 +44,8 @@ public class UIManager : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         yeti = FindObjectOfType<YetiChaser>();
+        worldScroller = FindObjectOfType<WorldScroller>();
+        playerAnimator = player.GetComponent<Animator>();
 
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
         bestScoreText.text = "BEST: " + bestScore + " m";
@@ -53,18 +57,33 @@ public class UIManager : MonoBehaviour
         
         startPanel.SetActive(true);
         startButton.onClick.AddListener(StartGame);
-        
-        // Désactive le input du joueur au départ
-        player.enabled = false;
+
+        SetGameplayActive(false);
     }
     
     void StartGame()
     {
         startPanel.SetActive(false);
-        player.enabled = true;
-        FindObjectOfType<WorldScroller>().isRunning = true;
+        SetGameplayActive(true);
         gameStarted = true;
         AudioManager.Instance.PlayGameMusic();
+    }
+
+    void SetGameplayActive(bool active)
+    {
+        player.enabled = active;
+
+        if (playerAnimator != null)
+            playerAnimator.enabled = active;
+
+        if (yeti != null)
+            yeti.enabled = active;
+
+        if (worldScroller != null)
+            worldScroller.isRunning = active;
+
+        if (player.skiTrails != null)
+            player.skiTrails.SetActive(active);
     }
 
     void Update()
@@ -141,6 +160,7 @@ public class UIManager : MonoBehaviour
 
         finalScoreText.text = meters + " m";
         bestScoreGameOverText.text = "BEST: " + bestScore + " m";
+        SetGameplayActive(false);
         gameOverPanel.SetActive(true);
     }
 
