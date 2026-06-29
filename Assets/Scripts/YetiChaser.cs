@@ -75,7 +75,7 @@ public class YetiChaser : MonoBehaviour
     {
         float targetY;
 
-        if (player.isSlowed)
+        if (player.IsSlowed)
         {
             // Se rapproche du joueur
             targetY = player.transform.position.y + 1.5f;
@@ -114,12 +114,12 @@ public class YetiChaser : MonoBehaviour
 
     void UpdateAnimation()
     {
-        animator.SetBool("isSlowing", player.isSlowed);
+        animator.SetBool("isSlowing", player.IsSlowed);
     }
     
     void UpdateApproachSound()
     {
-        if (!player.isSlowed) 
+        if (!player.IsSlowed) 
         {
             approachSoundTimer = 0f;
             return;

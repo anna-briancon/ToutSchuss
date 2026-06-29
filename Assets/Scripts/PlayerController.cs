@@ -37,17 +37,15 @@ public class PlayerController : MonoBehaviour
     public float deathSpinSpeed = 360f;
 
     [Header("Hit System")]
-    public float slowMultiplier = 0.4f;
     public float slowDuration = 3f;
+    public float lineHitGrace = 0.6f;
     public float hitShakeDuration = 0.45f;
     public float hitShakeIntensity = 0.25f;
-    public float hitShakeFrequency = 28f;
     private float slowTimer = 0f;
     private float hitShakeTimer = 0f;
-    private float hitShakeElapsed;
     private Vector3 lastShakeOffset;
-    private int hitCount = 0;
-    public bool isSlowed = false;
+    private bool isSlowed;
+    public bool IsSlowed => isSlowed;
     private bool isDead = false;
     
     [Header("Ski Trails")]
@@ -244,28 +242,22 @@ public class PlayerController : MonoBehaviour
     public void HitObstacle()
     {
         if (isDead) return;
+
+        if (isSlowed)
+        {
+            if (slowTimer > slowDuration - lineHitGrace)
+                return;
+            Die();
+            return;
+        }
+
         if (hitSounds.Length > 0)
         {
             AudioClip randomHit = hitSounds[Random.Range(0, hitSounds.Length)];
             audioSource.PlayOneShot(randomHit);
         }
-        hitCount++;
 
         hitShakeTimer = hitShakeDuration;
-        hitShakeElapsed = 0f;
-
-        if (hitCount >= 2)
-        {
-            Die();
-        }
-        else
-        {
-            ApplySlow();
-        }
-    }
-
-    void ApplySlow()
-    {
         isSlowed = true;
         slowTimer = slowDuration;
         Debug.Log("Ralenti !");
@@ -322,8 +314,6 @@ public class PlayerController : MonoBehaviour
         if (slowTimer <= 0f)
         {
             isSlowed = false;
-            slowTimer = 0f;
-            hitCount = 0;
             Debug.Log("Récupéré !");
         }
     }
@@ -336,12 +326,11 @@ public class PlayerController : MonoBehaviour
         if (hitShakeTimer <= 0f) return;
 
         hitShakeTimer -= Time.deltaTime;
-        hitShakeElapsed += Time.deltaTime;
         float damper = hitShakeTimer / hitShakeDuration;
-        float wave = hitShakeElapsed * hitShakeFrequency * Mathf.PI * 2f;
+        float wave = (hitShakeDuration - hitShakeTimer) * 28f * Mathf.PI * 2f;
         lastShakeOffset = new Vector3(
             Mathf.Sin(wave),
-            Mathf.Sin(wave * 1.37f),
+            Mathf.Sin(wave * 1.3f),
             0f) * hitShakeIntensity * damper;
         transform.position += lastShakeOffset;
     }
