@@ -39,7 +39,13 @@ public class PlayerController : MonoBehaviour
     [Header("Hit System")]
     public float slowMultiplier = 0.4f;
     public float slowDuration = 3f;
+    public float hitShakeDuration = 0.45f;
+    public float hitShakeIntensity = 0.25f;
+    public float hitShakeFrequency = 28f;
     private float slowTimer = 0f;
+    private float hitShakeTimer = 0f;
+    private float hitShakeElapsed;
+    private Vector3 lastShakeOffset;
     private int hitCount = 0;
     public bool isSlowed = false;
     private bool isDead = false;
@@ -95,6 +101,7 @@ public class PlayerController : MonoBehaviour
             UpdateSlow();
         }
         UpdateTrails();
+        UpdateHitShake();
         UpdateDeath();
     }
 
@@ -244,6 +251,9 @@ public class PlayerController : MonoBehaviour
         }
         hitCount++;
 
+        hitShakeTimer = hitShakeDuration;
+        hitShakeElapsed = 0f;
+
         if (hitCount >= 2)
         {
             Die();
@@ -270,6 +280,9 @@ public class PlayerController : MonoBehaviour
         trailHideTimer = 0f;
         isSlowed = false;
         slowTimer = 0f;
+        hitShakeTimer = 0f;
+        transform.position -= lastShakeOffset;
+        lastShakeOffset = Vector3.zero;
         transform.localScale = baseScale;
         gameObject.layer = normalLayer;
         RestoreNormalSorting();
@@ -313,6 +326,24 @@ public class PlayerController : MonoBehaviour
             hitCount = 0;
             Debug.Log("Récupéré !");
         }
+    }
+
+    void UpdateHitShake()
+    {
+        transform.position -= lastShakeOffset;
+        lastShakeOffset = Vector3.zero;
+
+        if (hitShakeTimer <= 0f) return;
+
+        hitShakeTimer -= Time.deltaTime;
+        hitShakeElapsed += Time.deltaTime;
+        float damper = hitShakeTimer / hitShakeDuration;
+        float wave = hitShakeElapsed * hitShakeFrequency * Mathf.PI * 2f;
+        lastShakeOffset = new Vector3(
+            Mathf.Sin(wave),
+            Mathf.Sin(wave * 1.37f),
+            0f) * hitShakeIntensity * damper;
+        transform.position += lastShakeOffset;
     }
     
     void SpawnLandingPuff()

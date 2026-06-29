@@ -37,7 +37,5 @@ public class Obstacle : MonoBehaviour
         {
             player.HitObstacle();
         }
-
-        Destroy(gameObject);
     }
 }
