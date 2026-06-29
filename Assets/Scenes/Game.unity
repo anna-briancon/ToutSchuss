@@ -2538,6 +2538,8 @@ MonoBehaviour:
   propSpawnChance: 0.4
   staticWorldRoot: {fileID: 1442843823}
   staticPropsRoot: {fileID: 1809935545}
+  difficultyInterval: 10
+  speedIncrease: 0.8
 --- !u!4 &1192284387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5196544949431045147, guid: 9ec1fb983aec74626a1d0015c6e8a54e, type: 3}

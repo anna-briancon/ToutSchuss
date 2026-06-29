@@ -19,13 +19,18 @@ public class WorldScroller : MonoBehaviour
     public Transform staticWorldRoot;
     public Transform staticPropsRoot;
 
+    [Header("Difficulté")]
+    public float difficultyInterval = 15f;
+    public float speedIncrease = 0.3f;
+    private float difficultyTimer = 0f;
+
     private List<GameObject> rows = new List<GameObject>();
     private List<GameObject> props = new List<GameObject>();
     private List<GameObject> obstacles = new List<GameObject>();
-    
+
     private float topY;
     private float bottomY;
-    
+
     void Start()
     {
         topY = rowCount / 2f * rowHeight;
@@ -58,13 +63,14 @@ public class WorldScroller : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance == null || !GameManager.Instance.IsPlaying) return;
-        
+
         ScrollRows();
         ScrollProps();
         RecycleRows();
         RecycleProps();
         ScrollObstacles();
         RecycleObstacles();
+        UpdateDifficulty();
     }
 
     void ScrollRows()
@@ -99,7 +105,8 @@ public class WorldScroller : MonoBehaviour
 
     void RecycleProps()
     {
-        props.RemoveAll(p => {
+        props.RemoveAll(p =>
+        {
             if (p == null) return true;
             if (p.transform.position.y > topY + rowHeight)
             {
@@ -139,12 +146,12 @@ public class WorldScroller : MonoBehaviour
         GameObject prop = Instantiate(propPrefabs[idx], new Vector3(x, y, 0), Quaternion.identity);
         props.Add(prop);
     }
-    
+
     public void AddObstacle(GameObject obs)
     {
         obstacles.Add(obs);
     }
-    
+
     void ScrollObstacles()
     {
         foreach (GameObject obs in obstacles)
@@ -156,7 +163,8 @@ public class WorldScroller : MonoBehaviour
 
     void RecycleObstacles()
     {
-        obstacles.RemoveAll(o => {
+        obstacles.RemoveAll(o =>
+        {
             if (o == null) return true;
             if (o.transform.position.y > topY + 5f)
             {
@@ -165,5 +173,16 @@ public class WorldScroller : MonoBehaviour
             }
             return false;
         });
+    }
+    
+    void UpdateDifficulty()
+    {
+        difficultyTimer += Time.deltaTime;
+        if (difficultyTimer >= difficultyInterval)
+        {
+            difficultyTimer = 0f;
+            scrollSpeed += speedIncrease;
+            Debug.Log("Vitesse : " + scrollSpeed);
+        }
     }
 }
