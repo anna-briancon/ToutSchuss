@@ -58,6 +58,7 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject[] line = new GameObject[3];
         int safeLane = PickNextSafeLane();
         lastSafeLane = safeLane;
+        float y = GetSpawnY();
 
         for (int lane = 0; lane < 3; lane++)
         {
@@ -73,13 +74,13 @@ public class ObstacleSpawner : MonoBehaviour
 
             if (line[i] != null)
             {
-                GameObject obs = Instantiate(line[i], new Vector3(x, spawnY, 0), Quaternion.identity);
+                GameObject obs = Instantiate(line[i], new Vector3(x, y, 0), Quaternion.identity);
                 worldScroller.AddObstacle(obs);
             }
             else if (Random.value < safeLaneJumpChance && jumpObstacles.Length > 0)
             {
                 int idx = Random.Range(0, jumpObstacles.Length);
-                GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, spawnY, 0), Quaternion.identity);
+                GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, y, 0), Quaternion.identity);
                 worldScroller.AddObstacle(obs);
             }
         }
@@ -157,6 +158,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         int safeLane = PickNextSafeLane();
         lastSafeLane = safeLane;
+        float y = GetSpawnY();
 
         for (int lane = 0; lane < 3; lane++)
         {
@@ -164,7 +166,7 @@ public class ObstacleSpawner : MonoBehaviour
 
             float x = (lane - 1) * laneWidth;
             int idx = Random.Range(0, jumpObstacles.Length);
-            GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, spawnY, 0), Quaternion.identity);
+            GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, y, 0), Quaternion.identity);
             worldScroller.AddObstacle(obs);
         }
     }
@@ -173,7 +175,15 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (duckObstacles.Length == 0) return;
         int idx = Random.Range(0, duckObstacles.Length);
-        GameObject obs = Instantiate(duckObstacles[idx], new Vector3(0, spawnY, 0), Quaternion.identity);
+        GameObject obs = Instantiate(duckObstacles[idx], new Vector3(0, GetSpawnY(), 0), Quaternion.identity);
         worldScroller.AddObstacle(obs);
+    }
+
+    float GetSpawnY()
+    {
+        if (worldScroller != null)
+            return worldScroller.GetObstacleSpawnY();
+
+        return spawnY;
     }
 }

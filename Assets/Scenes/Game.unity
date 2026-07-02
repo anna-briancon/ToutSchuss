@@ -2538,6 +2538,7 @@ MonoBehaviour:
   scrollSpeed: 3
   rowCount: 18
   rowHeight: 1
+  preloadMargin: 4
   propSpawnChance: 0.4
   staticWorldRoot: {fileID: 1442843823}
   staticPropsRoot: {fileID: 1809935545}
