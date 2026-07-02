@@ -3917,9 +3917,9 @@ MonoBehaviour:
   landingPuffDuration: 0.75
   duckPuffDuration: 1.1
   hitSounds:
-  - {fileID: 8300000, guid: e64efbc9a5b4145b79241e2e489989a9, type: 3}
-  - {fileID: 8300000, guid: 397155923320a4dbcbc922d918d7349e, type: 3}
-  - {fileID: 8300000, guid: 16825a19ad8a0460fa932379a454b352, type: 3}
+  - {fileID: 8300000, guid: 3cc7f598f88284749a5f65b9cc8dae99, type: 3}
+  - {fileID: 8300000, guid: c8641847599094a7f9ef3e01c929bc7a, type: 3}
+  - {fileID: 8300000, guid: b3e02370e613c4949a0d14468b4f50c8, type: 3}
 --- !u!114 &1692258955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4652,8 +4652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1783870594}
   sfxSource: {fileID: 1783870593}
-  menuMusic: {fileID: 8300000, guid: 68d633c3190a9437ab123dfbc636f6de, type: 3}
-  gameMusic: {fileID: 8300000, guid: d04a510a74062481c8f58be1283dc5d3, type: 3}
+  menuMusic: {fileID: 8300000, guid: bd36de1a143184165acc205d2186e31b, type: 3}
+  gameMusic: {fileID: 8300000, guid: b3e1dafbde71d42479b37688a2988359, type: 3}
   gameOverSound: {fileID: 8300000, guid: e90bdc395b4d4459caaff843e5d29ae7, type: 3}
 --- !u!82 &1783870593
 AudioSource:
