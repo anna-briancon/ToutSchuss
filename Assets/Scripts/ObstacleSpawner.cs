@@ -17,11 +17,15 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnInterval = 2f;
     public float spawnY = -10f;
     public float laneWidth = 1f;
+    [Range(0f, 1f)] public float sideSpawnChance = 0.65f;
+    [Range(0f, 1f)] public float safeLaneJumpChance = 0.2f;
+    [Range(0f, 1f)] public float neutralSpawnChance = 0.6f;
 
     [Header("References")]
     public WorldScroller worldScroller;
 
     private float timer = 0f;
+    private int lastSafeLane = 1;
 
     // Positions des couloirs
     // 0 = gauche (x:-1), 1 = centre (x:0), 2 = droite (x:+1)
@@ -40,101 +44,125 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnObstacle()
     {
-        int typeRoll = Random.Range(0, 3);
-        switch (typeRoll)
-        {
-            case 0: SpawnSideLine(); break;
-            case 1: SpawnJumpLine(); break;
-            case 2: SpawnDuckObstacle(); break;
-        }
+        float roll = Random.value;
+        if (roll < sideSpawnChance)
+            SpawnSideLine();
+        else if (roll < sideSpawnChance + (1f - sideSpawnChance) * 0.5f)
+            SpawnJumpLine();
+        else
+            SpawnDuckObstacle();
     }
 
     void SpawnSideLine()
     {
-        // Tableau qui stocke ce qu'on met dans chaque couloir
-        // null = libre, sinon = prefab à spawner
-        GameObject[] line = new GameObject[3]; // [0]=gauche [1]=centre [2]=droite
+        GameObject[] line = new GameObject[3];
+        int safeLane = PickNextSafeLane();
+        lastSafeLane = safeLane;
 
-        // Décide si on place GateBlue et/ou GateRed
-        bool placeGateBlue = Random.value < 0.5f;
-        bool placeGateRed = Random.value < 0.5f;
-
-        // Place GateBlue → préfère gauche, sinon centre
-        if (placeGateBlue)
+        for (int lane = 0; lane < 3; lane++)
         {
-            if (line[0] == null)
-                line[0] = gateBlue;
-            else if (line[1] == null)
-                line[1] = gateBlue;
+            if (lane == safeLane) continue;
+            line[lane] = PickBlockerForLane(lane, safeLane);
         }
 
-        // Place GateRed → préfère droite, sinon centre
-        if (placeGateRed)
-        {
-            if (line[2] == null)
-                line[2] = gateRed;
-            else if (line[1] == null)
-                line[1] = gateRed;
-        }
+        EnsureAtLeastOneNeutral(line, safeLane);
 
-        // Compte les couloirs libres
-        int freeLanes = 0;
-        for (int i = 0; i < 3; i++)
-            if (line[i] == null) freeLanes++;
-
-        // S'assure qu'au moins un couloir reste libre (sans obstacle Side)
-        // Place des neutres sur certains couloirs libres
-        for (int i = 0; i < 3; i++)
-        {
-            if (line[i] != null) continue;
-
-            // Garde au moins un couloir vraiment libre
-            bool isLastFree = (freeLanes == 1);
-            if (!isLastFree && Random.value < 0.5f)
-            {
-                if (neutralObstacles.Length > 0)
-                {
-                    line[i] = neutralObstacles[Random.Range(0, neutralObstacles.Length)];
-                    freeLanes--;
-                }
-            }
-        }
-
-        // Instancie tout
         for (int i = 0; i < 3; i++)
         {
             float x = (i - 1) * laneWidth;
 
             if (line[i] != null)
             {
-                // Obstacle Side
                 GameObject obs = Instantiate(line[i], new Vector3(x, spawnY, 0), Quaternion.identity);
                 worldScroller.AddObstacle(obs);
             }
-            else
+            else if (Random.value < safeLaneJumpChance && jumpObstacles.Length > 0)
             {
-                // Couloir libre → rien ou Jump
-                if (Random.value < 0.4f && jumpObstacles.Length > 0)
-                {
-                    int idx = Random.Range(0, jumpObstacles.Length);
-                    GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, spawnY, 0), Quaternion.identity);
-                    worldScroller.AddObstacle(obs);
-                }
+                int idx = Random.Range(0, jumpObstacles.Length);
+                GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, spawnY, 0), Quaternion.identity);
+                worldScroller.AddObstacle(obs);
             }
         }
+    }
+
+    int PickNextSafeLane()
+    {
+        int[] candidates = new int[2];
+        int count = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            if (i != lastSafeLane)
+                candidates[count++] = i;
+        }
+
+        return candidates[Random.Range(0, count)];
+    }
+
+    GameObject PickBlockerForLane(int lane, int safeLane)
+    {
+        if (neutralObstacles.Length > 0 && Random.value < neutralSpawnChance)
+            return neutralObstacles[Random.Range(0, neutralObstacles.Length)];
+
+        if (lane == 0 && gateBlue != null)
+            return gateBlue;
+
+        if (lane == 2 && gateRed != null)
+            return gateRed;
+
+        if (lane == 1)
+        {
+            if (safeLane == 0 && gateRed != null)
+                return gateRed;
+            if (safeLane == 2 && gateBlue != null)
+                return gateBlue;
+        }
+
+        if (neutralObstacles.Length > 0)
+            return neutralObstacles[Random.Range(0, neutralObstacles.Length)];
+
+        return gateBlue != null ? gateBlue : gateRed;
+    }
+
+    void EnsureAtLeastOneNeutral(GameObject[] line, int safeLane)
+    {
+        if (neutralObstacles.Length == 0) return;
+
+        for (int lane = 0; lane < 3; lane++)
+        {
+            if (lane == safeLane) continue;
+            if (!IsGate(line[lane]))
+                return;
+        }
+
+        int[] blockedLanes = new int[2];
+        int count = 0;
+        for (int lane = 0; lane < 3; lane++)
+        {
+            if (lane != safeLane)
+                blockedLanes[count++] = lane;
+        }
+
+        int replaceLane = blockedLanes[Random.Range(0, count)];
+        line[replaceLane] = neutralObstacles[Random.Range(0, neutralObstacles.Length)];
+    }
+
+    bool IsGate(GameObject prefab)
+    {
+        return prefab == gateBlue || prefab == gateRed;
     }
 
     void SpawnJumpLine()
     {
         if (jumpObstacles.Length == 0) return;
 
-        int count = Random.Range(1, 4);
-        int[] lanes = { 0, 1, 2 };
-        ShuffleLanes(lanes);
+        int safeLane = PickNextSafeLane();
+        lastSafeLane = safeLane;
 
-        for (int i = 0; i < count; i++)
+        for (int lane = 0; lane < 3; lane++)
         {
-            float x = (lanes[i] - 1) * laneWidth;
+            if (lane == safeLane) continue;
+
+            float x = (lane - 1) * laneWidth;
             int idx = Random.Range(0, jumpObstacles.Length);
             GameObject obs = Instantiate(jumpObstacles[idx], new Vector3(x, spawnY, 0), Quaternion.identity);
             worldScroller.AddObstacle(obs);
@@ -147,16 +175,5 @@ public class ObstacleSpawner : MonoBehaviour
         int idx = Random.Range(0, duckObstacles.Length);
         GameObject obs = Instantiate(duckObstacles[idx], new Vector3(0, spawnY, 0), Quaternion.identity);
         worldScroller.AddObstacle(obs);
-    }
-
-    void ShuffleLanes(int[] lanes)
-    {
-        for (int i = lanes.Length - 1; i > 0; i--)
-        {
-            int j = Random.Range(0, i + 1);
-            int tmp = lanes[i];
-            lanes[i] = lanes[j];
-            lanes[j] = tmp;
-        }
     }
 }

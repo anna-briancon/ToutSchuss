@@ -1657,6 +1657,9 @@ MonoBehaviour:
   spawnInterval: 2
   spawnY: -10
   laneWidth: 1
+  sideSpawnChance: 0.65
+  safeLaneJumpChance: 0.2
+  neutralSpawnChance: 0.6
   worldScroller: {fileID: 1173795800}
 --- !u!4 &810386781
 Transform:
@@ -3897,7 +3900,7 @@ MonoBehaviour:
   jumpDuration: 0.8
   jumpScaleBoost: 0.3
   duckScale: 0.6
-  duckDuration: 1
+  duckDuration: 0.8
   duckSortingLayer: Props
   jumpingLayer: 10
   duckingLayer: 11
@@ -3908,7 +3911,6 @@ MonoBehaviour:
   lineHitGrace: 0.6
   hitShakeDuration: 0.45
   hitShakeIntensity: 0.25
-  isSlowed: 0
   skiTrails: {fileID: 1392338726}
   puffPrefab: {fileID: 4656954275549147121, guid: 78df48472f47b431c83772b196e296de, type: 3}
   duckPuffPrefab: {fileID: 5161834365109946377, guid: 6365775f03b8c4af49a25c6f263bdf5e, type: 3}
