@@ -93,3 +93,5 @@ $RECYCLE.BIN/
 
 # Personal workspace (notes, drafts, anything not delivered to students)
 .personal/
+
+Builds/
