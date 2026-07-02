@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
     
     [Header("Audio")]
     public AudioClip[] hitSounds;
+    public AudioClip skiSound;
+    [Range(0f, 1f)] public float skiSoundVolume = 0.5f;
     
     private AudioSource audioSource;
 
@@ -115,13 +117,22 @@ public class PlayerController : MonoBehaviour
             currentLane--;
             targetX = (currentLane - 1) * laneWidth;
             TiltTrails(-trailTiltAngle);
+            PlaySkiSound();
         }
         if (input.x > 0 && currentLane < 2)
         {
             currentLane++;
             targetX = (currentLane - 1) * laneWidth;
             TiltTrails(trailTiltAngle);
+            PlaySkiSound();
         }
+    }
+
+    void PlaySkiSound()
+    {
+        if (skiSound == null || audioSource == null) return;
+
+        audioSource.PlayOneShot(skiSound, skiSoundVolume);
     }
 
     void TiltTrails(float angle)

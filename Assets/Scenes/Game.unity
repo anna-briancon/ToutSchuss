@@ -3920,6 +3920,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3cc7f598f88284749a5f65b9cc8dae99, type: 3}
   - {fileID: 8300000, guid: c8641847599094a7f9ef3e01c929bc7a, type: 3}
   - {fileID: 8300000, guid: b3e02370e613c4949a0d14468b4f50c8, type: 3}
+  skiSound: {fileID: 8300000, guid: a9b4009566e61405082b9771082f5834, type: 3}
+  skiSoundVolume: 0.3
 --- !u!114 &1692258955
 MonoBehaviour:
   m_ObjectHideFlags: 0
