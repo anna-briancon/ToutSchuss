@@ -3921,7 +3921,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c8641847599094a7f9ef3e01c929bc7a, type: 3}
   - {fileID: 8300000, guid: b3e02370e613c4949a0d14468b4f50c8, type: 3}
   skiSound: {fileID: 8300000, guid: a9b4009566e61405082b9771082f5834, type: 3}
+  duckSound: {fileID: 8300000, guid: a343fb4fc4c314cf9829b8a2ca6e0b67, type: 3}
+  landingSound: {fileID: 8300000, guid: 6cb8e80f67ee347979a4b5889e4710d6, type: 3}
+  hitSoundVolume: 1
   skiSoundVolume: 0.3
+  duckSoundVolume: 0.3
+  landingSoundVolume: 0.6
 --- !u!114 &1692258955
 MonoBehaviour:
   m_ObjectHideFlags: 0

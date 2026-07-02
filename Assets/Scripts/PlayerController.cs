@@ -63,7 +63,12 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     public AudioClip[] hitSounds;
     public AudioClip skiSound;
+    public AudioClip duckSound;
+    public AudioClip landingSound;
+    [Range(0f, 1f)] public float hitSoundVolume = 1f;
     [Range(0f, 1f)] public float skiSoundVolume = 0.5f;
+    [Range(0f, 1f)] public float duckSoundVolume = 0.5f;
+    [Range(0f, 1f)] public float landingSoundVolume = 0.5f;
     
     private AudioSource audioSource;
 
@@ -130,9 +135,13 @@ public class PlayerController : MonoBehaviour
 
     void PlaySkiSound()
     {
-        if (skiSound == null || audioSource == null) return;
+        PlaySFX(skiSound, skiSoundVolume);
+    }
 
-        audioSource.PlayOneShot(skiSound, skiSoundVolume);
+    void PlaySFX(AudioClip clip, float volume)
+    {
+        if (clip == null || audioSource == null) return;
+        audioSource.PlayOneShot(clip, volume);
     }
 
     void TiltTrails(float angle)
@@ -203,7 +212,10 @@ public class PlayerController : MonoBehaviour
             gameObject.layer = normalLayer;
 
             if (!isDead)
+            {
                 SpawnLandingPuff();
+                PlaySFX(landingSound, landingSoundVolume);
+            }
         }
     }
 
@@ -217,7 +229,10 @@ public class PlayerController : MonoBehaviour
             gameObject.layer = duckingLayer;
             ApplyDuckSorting();
             if (!isDead)
+            {
                 SpawnDuckPuff();
+                PlaySFX(duckSound, duckSoundVolume);
+            }
         }
 
         duckTimer += Time.deltaTime;
@@ -265,7 +280,7 @@ public class PlayerController : MonoBehaviour
         if (hitSounds.Length > 0)
         {
             AudioClip randomHit = hitSounds[Random.Range(0, hitSounds.Length)];
-            audioSource.PlayOneShot(randomHit);
+            PlaySFX(randomHit, hitSoundVolume);
         }
 
         hitShakeTimer = hitShakeDuration;
