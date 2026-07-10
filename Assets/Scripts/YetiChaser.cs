@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class YetiChaser : MonoBehaviour
@@ -13,10 +14,10 @@ public class YetiChaser : MonoBehaviour
     [Header("Audio")]
     public AudioClip[] approachSounds;   // Sons quand il se rapproche
     public AudioClip catchSound;         // Son quand il attrape le joueur
+    public float approachSoundDelay = 0.5f; // Délai après le son de hit du joueur
     private AudioSource audioSource;
-
-    private float approachSoundTimer = 0f;
-    public float approachSoundInterval = 2f; // Toutes les 2 secondes
+    private bool wasApproaching = false;
+    private Coroutine approachSoundCoroutine;
 
     [Header("References")]
     public PlayerController player;
@@ -60,6 +61,7 @@ public class YetiChaser : MonoBehaviour
         if (!hasCaught)
         {
             hasCaught = true;
+            StopApproachSound();
             PlayCatchSound();
         }
 
@@ -119,22 +121,53 @@ public class YetiChaser : MonoBehaviour
     
     void UpdateApproachSound()
     {
-        if (!player.IsSlowed) 
+        bool isApproaching = player.IsSlowed;
+
+        if (!isApproaching)
         {
-            approachSoundTimer = 0f;
+            wasApproaching = false;
+            CancelApproachSoundDelay();
             return;
         }
 
-        approachSoundTimer += Time.deltaTime;
-        if (approachSoundTimer >= approachSoundInterval)
-        {
-            approachSoundTimer = 0f;
-            if (approachSounds.Length > 0)
-            {
-                AudioClip clip = approachSounds[Random.Range(0, approachSounds.Length)];
-                audioSource.PlayOneShot(clip);
-            }
-        }
+        if (wasApproaching) return;
+
+        wasApproaching = true;
+        approachSoundCoroutine = StartCoroutine(PlayApproachSoundAfterHit());
+    }
+
+    IEnumerator PlayApproachSoundAfterHit()
+    {
+        float delay = approachSoundDelay;
+        if (delay > 0f)
+            yield return new WaitForSeconds(delay);
+
+        approachSoundCoroutine = null;
+
+        if (player == null || !player.IsSlowed || player.IsDead()) yield break;
+
+        PlayApproachSound();
+    }
+
+    void CancelApproachSoundDelay()
+    {
+        if (approachSoundCoroutine == null) return;
+        StopCoroutine(approachSoundCoroutine);
+        approachSoundCoroutine = null;
+    }
+
+    void PlayApproachSound()
+    {
+        if (approachSounds.Length == 0) return;
+        AudioClip clip = approachSounds[Random.Range(0, approachSounds.Length)];
+        audioSource.PlayOneShot(clip);
+    }
+
+    void StopApproachSound()
+    {
+        wasApproaching = false;
+        CancelApproachSoundDelay();
+        audioSource.Stop();
     }
 
     void PlayCatchSound()

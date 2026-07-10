@@ -666,7 +666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchoredPosition: {x: 0, y: 95}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359621501
@@ -1020,8 +1020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 700, y: 50}
+  m_AnchoredPosition: {x: 0, y: 250}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564618059
 MonoBehaviour:
@@ -1045,8 +1045,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fc07e03ce1cd840378b028a5f85bfe77, type: 2}
-  m_sharedMaterial: {fileID: -3317077185494363786, guid: fc07e03ce1cd840378b028a5f85bfe77, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6a80220106bc64cea8021d31068ce162, type: 2}
+  m_sharedMaterial: {fileID: 7002611913046208464, guid: 6a80220106bc64cea8021d31068ce162, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1070,13 +1070,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 110
+  m_fontSizeBase: 110
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1854,8 +1854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
-  m_SizeDelta: {x: 500, y: 150}
+  m_AnchoredPosition: {x: 0, y: -210}
+  m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918107442
 MonoBehaviour:
@@ -2542,6 +2542,7 @@ MonoBehaviour:
   propSpawnChance: 0.4
   staticWorldRoot: {fileID: 1442843823}
   staticPropsRoot: {fileID: 1809935545}
+  mainCamera: {fileID: 0}
   difficultyInterval: 10
   speedIncrease: 0.8
 --- !u!4 &1192284387 stripped
@@ -2687,8 +2688,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2705,8 +2706,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3122,7 +3123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398238008
@@ -3456,7 +3457,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1581830906
 MonoBehaviour:
@@ -3471,7 +3472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5529412}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3921,6 +3922,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3cc7f598f88284749a5f65b9cc8dae99, type: 3}
   - {fileID: 8300000, guid: c8641847599094a7f9ef3e01c929bc7a, type: 3}
   - {fileID: 8300000, guid: b3e02370e613c4949a0d14468b4f50c8, type: 3}
+  - {fileID: 8300000, guid: 7efb0723dc82b494bb6bc2648aa4e61a, type: 3}
+  - {fileID: 8300000, guid: 7e22b83c9b6444542a1e74da4c6d6d7e, type: 3}
+  - {fileID: 8300000, guid: 26542153a93e0401e927be61f3d9f862, type: 3}
   skiSound: {fileID: 8300000, guid: a9b4009566e61405082b9771082f5834, type: 3}
   duckSound: {fileID: 8300000, guid: a343fb4fc4c314cf9829b8a2ca6e0b67, type: 3}
   landingSound: {fileID: 8300000, guid: 6cb8e80f67ee347979a4b5889e4710d6, type: 3}
@@ -4995,9 +4999,11 @@ MonoBehaviour:
   approachSpeed: 2
   retreatSpeed: 1
   approachSounds:
-  - {fileID: 8300000, guid: e1971cc1395ed43bf81c9985432e4820, type: 3}
-  catchSound: {fileID: 8300000, guid: 592af9af459a849ec9cb400c6c81fcdc, type: 3}
-  approachSoundInterval: 2
+  - {fileID: 8300000, guid: 30ae0ee4937d44ae58087ee363d0f764, type: 3}
+  - {fileID: 8300000, guid: c571bfc24d3a2479a9a06edc654d60ee, type: 3}
+  - {fileID: 8300000, guid: 5d8cb860bf77946ffb84ae8fbc6ed777, type: 3}
+  catchSound: {fileID: 8300000, guid: 4f744b7e85e114853b918a6704c0141a, type: 3}
+  approachSoundDelay: 0.5
   player: {fileID: 1692258954}
 --- !u!82 &1806448260
 AudioSource:

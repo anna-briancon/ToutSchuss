@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip skiSound;
     public AudioClip duckSound;
     public AudioClip landingSound;
-    [Range(0f, 1f)] public float hitSoundVolume = 1f;
+    [Range(0f, 2f)] public float hitSoundVolume = 1f;
     [Range(0f, 1f)] public float skiSoundVolume = 0.5f;
     [Range(0f, 1f)] public float duckSoundVolume = 0.5f;
     [Range(0f, 1f)] public float landingSoundVolume = 0.5f;
